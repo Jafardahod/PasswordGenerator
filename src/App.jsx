@@ -5,6 +5,7 @@ function App() {
   let [include_num, setinclude_nums] = useState(false);
   let [include_char, setinclude_char] = useState(false);
   let [password, setpassword] = useState("");
+  let [copy, setcopy] = useState(false)
 
   let alphabetArray = [];
 
@@ -75,18 +76,24 @@ function App() {
     }
   }
 
+  function copypassword(){
+    window.navigator.clipboard.writeText(password)
+    setcopy((e) => !e)
+  }
+  
+
   return (
     <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-3 py-1 my-8 bg-gray-500">
       <h1 className="text-white text-center mt-3 mb-3 ">Password Generator</h1>
       <div className="flex shadow rounded-lg overflow-hidden mb-10 mx-3 mt-5">
         <input
           type="text"
-          value={password}
+          value={password || 'XXXXXXX'}
           className="outline-none w-full py-4 px-5 "
           placeholder="password"
           readOnly
         />
-        <button className="bg-red-500 px-5">Copy</button>
+        <button onClick={copypassword} className={copy ? `bg-green-500 px-5` : `bg-red-500 px-5`}>{copy ? 'Copied' : 'Copy'}</button>
       </div>
       <div className="flex text-sm gap-x-2 justify-center">
         <div className="flex text-center gap-x-1">
@@ -94,7 +101,7 @@ function App() {
             type="range"
             min={6}
             max={12}
-            value={lenght || 'XXXXXXX'}
+            value={lenght}
             onChange={(e) => setlenght(e.target.value)}
             className="cursor-pointer"
           />
@@ -112,7 +119,10 @@ function App() {
           />
           <label>Characters</label>
         </div>
-        <button onClick={() => passgenerator(lenght, include_num, include_char)}>Click Me</button>
+      </div>
+      <div className="text-center">
+
+        <button className="bg-red-500 p-3 rounded-xl m-3" onClick={() => passgenerator(lenght, include_num, include_char)}>Click Me</button>
       </div>
     </div>
   );
