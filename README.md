@@ -1,9 +1,14 @@
-# Currency Converter
+# Random Password Generator
 
-A simple Currency Converter app built with React and custom hooks.
+A customizable Random Password Generator app built with React.
 
 ## Features
 
-- Convert between multiple currencies
-- Real-time exchange rate updates
-- User-friendly interface
+- Generate random passwords
+- Options to include/exclude:
+  - Uppercase letters
+  - Lowercase letters
+  - Numbers
+  - Special characters
+  - User-friendly interface
+
